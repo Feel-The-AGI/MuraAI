@@ -1,0 +1,16 @@
+from app import app, db
+from models.users import User
+from models.chat_thread import ChatMessage
+import datetime
+
+with app.app_context():
+    # Inserting a new user
+    new_user = User(email="example@email.com", password_hash="somehashedpassword", username='AGI')
+    db.session.add(new_user)
+    db.session.commit()
+
+    # Inserting a chat message
+    # Replace '1' with the actual user id you want to link the message to
+    new_message = ChatMessage(user_id=1, message_content="Hello, how can I assist you?", message_type="assistant", timestamp=datetime.datetime.utcnow())
+    db.session.add(new_message)
+    db.session.commit()
